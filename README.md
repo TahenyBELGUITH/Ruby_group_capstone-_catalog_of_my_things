@@ -1,0 +1,1 @@
+# Ruby_group_capstone-_catalog_of_my_things
