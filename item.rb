@@ -1,21 +1,27 @@
+require 'Date'
 class Item
-  attr_writer :genre, :author, :source, :label
+  attr_reader :publish_date
+  attr_accessor :genre, :author, :source, :label, :archived 
 
-  def initialize(publish_date, archieved)
-    @id = Round(1..100)
+  def initialize(genre, author, source, label, publish_date)
+    @id = Round(1..1000)
+    @genre = genre
+    @author = author
+    @source = source
+    @label = label
     @publish_date = publish_date
-    @archieved = archieved
+    @archieved = archived 
   end
 
   private
 
   def can_be_archieved?
-    @publish_date > 10
+    Date.today.year - Date.parse(@publish_date).year > 10
   end
 
   public
 
   def move_to_archieve
-    can_be_archieved? ? @archieved = true : return
+    @archieved = can_be_archieved?
   end
 end
