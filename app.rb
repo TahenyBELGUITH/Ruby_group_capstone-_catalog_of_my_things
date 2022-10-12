@@ -1,4 +1,3 @@
-$LOAD_PATH << '.'
 require_relative './classes/book_options'
 
 class App
