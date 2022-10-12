@@ -20,7 +20,8 @@ class Item
     @archieved = can_be_archieved?
   end
 
-  def add_genre(genre) #book,music,game
+  # book,music,game
+  def add_genre(genre)
     @genre = genre # 1 rel
     genre.items.push(self) unless genre.items.include?(self) # many rela
   end
