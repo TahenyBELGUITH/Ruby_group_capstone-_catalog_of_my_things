@@ -1,4 +1,5 @@
 require_relative '../game'
+require 'date'
 
 describe Game do
   context 'With valid arguments' do
