@@ -1,6 +1,6 @@
 class Genre
-  attr_reader :name
-  attr_accessor :items
+  # attr_reader :name
+  attr_accessor :items, :name
 
   def initialize(name)
     @id = Random.rand(1..1000)
@@ -10,6 +10,6 @@ class Genre
 
   def add_item(item)
     @items << item
-    item.add_genre = self
+    item.add_genre(self)
   end
 end
