@@ -1,9 +1,12 @@
-class Author
-  attr_reader :id, :first_name, :last_name
-  attr_accessor :items
+require_relative 'item'
 
-  def initialize(first_name, last_name, id: nil)
-    @id = id || Random.rand(1..1000)
+class Author < Item
+  attr_reader :id
+  attr_accessor :first_name, :last_name, :items
+
+  def initialize(first_name, last_name)
+    super(publish_date)
+    @id = Random.rand(1..1000)
     @first_name = first_name
     @last_name = last_name
     @items = []
@@ -11,6 +14,6 @@ class Author
 
   def add_item(item)
     @items.push(item)
-    item.add_author(self)
+    item.author = self
   end
 end
