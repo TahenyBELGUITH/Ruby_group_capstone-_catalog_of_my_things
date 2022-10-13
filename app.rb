@@ -1,8 +1,10 @@
 require_relative './classes/book_options'
+require_relative './classes/game_options'
 
 class App
   def initialize
     @books = []
+    @games = []
     @options = [
       'List all books',
       'List all music albums',
