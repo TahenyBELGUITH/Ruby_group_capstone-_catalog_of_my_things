@@ -1,7 +1,9 @@
 require_relative './classes/music_options'
+require_relative './classes/book_options'
 
 class App
   def initialize
+    @books = []
     @albums = []
     @options = [
       'List all books',
