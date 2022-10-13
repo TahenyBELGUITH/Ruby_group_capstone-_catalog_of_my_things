@@ -10,15 +10,9 @@ def add_music_album
   genre = gets.chomp
   print 'Enter publish date: '
   publish_date = gets.chomp
-  print 'Do it has Spotify? [y/n]: '
-  on_spotify = gets.chomp
-  is_on_spotify = case on_spotify.Downcase
-                  when 'y'
-                    true
-                  else
-                    false
-                  end
-
+  print 'Do it has Spotify? [Y/N]: '
+  on_spotify = gets.chomp.downcase == 'y' || gets.chomp.downcase == 'n'
+  is_on_spotify = on_spotify == 'y' ? 'y' : 'n'
   new_album = MusicAlbum.new(name, publish_date, is_on_spotify)
   new_genre = Genre.new(genre)
   new_genre.add_item(new_album)
@@ -45,7 +39,6 @@ def write_albume_to_file
     music_album = {
       'id' => music.id,
       'name' => music.name,
-      'genre' => music.genre.name,
       'publish_date' => music.publish_date,
       'on_spotify' => music.on_spotify
     }
@@ -62,7 +55,6 @@ def read_albums_data
   albums = JSON.parse(albums)
   albums.each do |music|
     new_album = MusicAlbum.new(music['name'], music['publish_date'], music['on_spotify'])
-    new_genre = Genre.new(music['genre'])
     @albums.push(new_album)
   end
 end
