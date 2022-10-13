@@ -32,5 +32,7 @@ end
 def list_all_authors
   return puts 'No Authors found' if @games.empty?
 
-  @games.each_with_index { |game, index| puts "#{index + 1}) Author: #{game.author.first_name} #{game.author.last_name}" }
+  @games.each_with_index do |game, index|
+    puts "#{index + 1}) Author: #{game.author.first_name} #{game.author.last_name}"
+  end
 end
