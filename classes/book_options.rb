@@ -1,6 +1,8 @@
 require_relative './book'
 require_relative './author'
 require_relative './label'
+require 'fileutils'
+require 'json'
 
 # Create a book.
 def add_book
@@ -23,6 +25,7 @@ def add_book
   new_book = Book.new(publisher, cover_state, publish_date)
   new_book.author = author
   new_book.label = label
+  write_books_data
   puts "Book #{new_book.id} created successfully.\n\n" if @books.push(new_book)
 end
 
@@ -32,8 +35,46 @@ def list_all_books
    Published by: #{book.publisher} on #{book.publish_date},
    Cover: #{book.cover_state}. \n"
   end
+  puts
 end
 
 def list_all_labels
   @books.each_with_index { |book, _index| print " \"#{book.label.title}\", " }
+  puts
+end
+
+def list_all_authors
+  @books.each_with_index { |author, _index| print " \"#{author.author.first_name} , #{author.author.last_name}\", " }
+  puts
+end
+
+def write_books_data
+  books = []
+  @books.each do |book|
+    b = {
+      'first_name' => book.author.first_name,
+      'last_name' => book.author.last_name,
+      'publisher' => book.publisher,
+      'publish_date' => book.publish_date,
+      'title' => book.label.title,
+      'cover_state' => book.cover_state
+    }
+    books.push(b)
+  end
+
+  FileUtils.mkdir_p('storage')
+  File.write('./storage/books.json', JSON.generate(books), mode: 'w')
+end
+
+def read_book_data
+  return unless File.exist?('./storage/books.json')
+
+  books = File.read('./storage/books.json')
+  books = JSON.parse(books)
+  books.each do |prop|
+    new_book = Book.new(prop['publisher'], prop['cover_state'], prop['publish_date'])
+    new_book.author = Author.new(prop['first_name'], prop['last_name'])
+    new_book.label = Label.new(prop['title'], prop['color'])
+    @books.push(new_book)
+  end
 end
