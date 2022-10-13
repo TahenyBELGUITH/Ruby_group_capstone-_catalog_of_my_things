@@ -2,7 +2,6 @@ require_relative './preserve_game'
 require_relative './game'
 require_relative './author'
 
-
 def add_game(preserve)
   puts 'Is it multiplayer [Y / N]'
   multi_player = gets.chomp.downcase == 'y'
