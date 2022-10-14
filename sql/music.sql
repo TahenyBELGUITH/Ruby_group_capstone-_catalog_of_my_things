@@ -1,0 +1,13 @@
+-- Create music table
+CREATE TABLE MusicAlbum (
+  id INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(200) NOT NULL,
+  on_spotify VARCHAR(200) NOT NULL,  
+  publish_date DATE NOT NULL,
+);
+
+-- Create Genre table
+CREATE TABLE Genre (
+  id INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(200) NOT NULL,
+);

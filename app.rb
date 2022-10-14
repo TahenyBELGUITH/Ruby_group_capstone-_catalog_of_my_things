@@ -1,8 +1,10 @@
+require_relative './classes/music_options'
 require_relative './classes/book_options'
 
 class App
   def initialize
     @books = []
+    @albums = []
     @options = [
       'List all books',
       'List all music albums',
@@ -18,6 +20,7 @@ class App
   end
 
   def run
+    read_albums_data
     loop do
       @options.each_with_index do |option, index|
         puts "[#{index + 1}]- #{option}"
