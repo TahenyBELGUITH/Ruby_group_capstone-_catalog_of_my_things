@@ -3,7 +3,7 @@ require 'date'
 
 describe MusicAlbum do
   before :each do
-    @music = MusicAlbum.new(Date.parse('2020-02-02'), true)
+    @music = MusicAlbum.new('rose', Date.parse('2020-02-02'), true)
   end
   context 'When enter valid value ' do
     it 'return Class object ' do

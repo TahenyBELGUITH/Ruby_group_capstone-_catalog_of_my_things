@@ -29,7 +29,7 @@ def list_all_music_albums
 end
 
 def list_all_genres
-  @albums.each_with_index { |album, index| puts "[#{index + 1}]-#{album.genre.name}" }
+  @albums.each_with_index { |album, index| puts "[#{index + 1}]-#{album.name}" }
   puts ''
 end
 
