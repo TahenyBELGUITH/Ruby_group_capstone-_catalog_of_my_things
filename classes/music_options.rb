@@ -17,6 +17,7 @@ def add_music_album
   new_genre = Genre.new(genre)
   new_genre.add_item(new_album)
   @albums.push(new_album)
+  write_albume_to_file
   puts 'Music add successfully!!'
 end
 
