@@ -1,4 +1,6 @@
-require './json_handler'
+require 'json_handler'
+require './classes/music_options'
+
 require 'fileutils'
 
 class DataStorage
@@ -16,5 +18,11 @@ class DataStorage
 
   def objects_to_hash_array(array_of_objects)
     puts array_of_objects.map(&:to_hash)
+  end
+
+  def objects_from_array(array_of_hashes)
+    array_of_hashes.map do |hash|
+      MusicAlbum.create_from_hash(hash)
+    end
   end
 end
