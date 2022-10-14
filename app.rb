@@ -1,5 +1,8 @@
 require_relative './classes/music_options'
 require_relative './classes/book_options'
+require './data_storage'
+require 'fileutils'
+require 'json'
 
 class App
   def initialize
@@ -20,6 +23,7 @@ class App
   end
 
   def run
+    read_book_data
     read_albums_data
     loop do
       @options.each_with_index do |option, index|
