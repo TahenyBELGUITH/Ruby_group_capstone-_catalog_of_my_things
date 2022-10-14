@@ -1,4 +1,4 @@
-require 'json_handler'
+require './json_handler'
 require './classes/music_options'
 
 require 'fileutils'
